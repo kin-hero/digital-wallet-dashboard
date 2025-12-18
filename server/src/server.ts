@@ -5,7 +5,7 @@ const fastify = Fastify({
 });
 
 // Health check route
-fastify.get('/health', async (request, reply) => {
+fastify.get('/health', () => {
   return { status: 'ok', message: 'Server is running' };
 });
 
@@ -21,4 +21,4 @@ const start = async () => {
   }
 };
 
-start();
+await start();
