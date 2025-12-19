@@ -41,6 +41,16 @@ export default tseslint.config(
     }
   },
   {
+    // Disable strict unsafe rules for schema files (Zod type inference)
+    files: ['**/*.schema.ts'],
+    rules: {
+      '@typescript-eslint/no-unsafe-assignment': 'off',
+      '@typescript-eslint/no-unsafe-call': 'off',
+      '@typescript-eslint/no-unsafe-member-access': 'off',
+      '@typescript-eslint/no-unsafe-return': 'off'
+    }
+  },
+  {
     ignores: ['dist/', 'node_modules/', '*.config.js']
   }
 );
