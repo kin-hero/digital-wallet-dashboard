@@ -5,10 +5,12 @@ export const checkWalletAgeParamsSchema = z.object({
   address: ethereumAddressSchema,
 });
 
+export const lastTransactionDateSchema = z.union([z.iso.date(), z.literal("Never")]);
+
 export const checkWalletAgeResponseSchema = successResponseSchema.extend({
   result: z.object({
     isOld: z.boolean(),
-    lastTransactionDate: z.iso.date(),
+    lastTransactionDate: lastTransactionDateSchema,
   }),
 });
 
