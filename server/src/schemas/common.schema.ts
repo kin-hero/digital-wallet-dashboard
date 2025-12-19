@@ -5,6 +5,8 @@ export const ethereumAddressSchema = z
   .length(42)
   .regex(/^0x[a-fA-F0-9]{40}$/, "Invalid Ethereum address format");
 
+export type EthereumAddress = z.infer<typeof ethereumAddressSchema>;
+
 export const errorResponseSchema = z.object({
   statusCode: z.number(),
   message: z.string(),
