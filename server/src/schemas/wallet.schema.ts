@@ -20,7 +20,7 @@ export const checkWalletAgeSchema = {
     404: errorResponseSchema,
     500: errorResponseSchema,
   },
-};
+} as const;
 
 export type CheckWalletAgeParams = z.infer<typeof checkWalletAgeParamsSchema>;
 export type CheckWalletAgeResponse = z.infer<typeof checkWalletAgeResponseSchema>;
