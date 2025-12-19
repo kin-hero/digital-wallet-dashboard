@@ -19,8 +19,9 @@ export const checkWalletAgeSchema = {
   response: {
     200: checkWalletAgeResponseSchema,
     400: errorResponseSchema,
-    404: errorResponseSchema,
     500: errorResponseSchema,
+    502: errorResponseSchema,
+    503: errorResponseSchema,
   },
 } as const;
 
