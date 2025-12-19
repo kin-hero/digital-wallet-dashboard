@@ -30,7 +30,7 @@ const verifyWalletAge = async (address: EthereumAddress): Promise<CheckWalletAge
 
     // Determine if wallet is old (older than threshold)
     const thresholdInDays = config.validWalletYears * 365;
-    const isOld = differenceInDays > thresholdInDays;
+    const isOld = differenceInDays >= thresholdInDays;
 
     const lastTransactionDate = transactionDate.toISOString().substring(0, 10);
 
