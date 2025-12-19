@@ -1,19 +1,48 @@
-import Fastify from 'fastify';
+import Fastify, { type FastifyError } from "fastify";
+import { serializerCompiler, validatorCompiler, type ZodTypeProvider } from "fastify-type-provider-zod";
+import cors from "@fastify/cors";
 
 const fastify = Fastify({
-  logger: true
-});
+  logger: true,
+}).withTypeProvider<ZodTypeProvider>();
+
+// Register Zod compilers for validation and serialization
+fastify.setValidatorCompiler(validatorCompiler);
+fastify.setSerializerCompiler(serializerCompiler);
+
+// Register plugins
+await fastify.register(cors);
+
+// Register routes
 
 // Health check route
-fastify.get('/health', () => {
-  return { status: 'ok', message: 'Server is running' };
+fastify.get("/health", () => {
+  return { status: "ok", message: "Server is running" };
+});
+
+// Global error handler
+fastify.setErrorHandler((error: FastifyError, _request, reply) => {
+  if (error.validation) {
+    return reply.status(400).send({
+      statusCode: 400,
+      message: error.message,
+    });
+  }
+
+  // Log unexpected errors
+  fastify.log.error(error);
+
+  return reply.status(500).send({
+    statusCode: 500,
+    message: "Internal Server Error",
+  });
 });
 
 // Start server
 const start = async () => {
   try {
     const port = Number(process.env.PORT) || 3001;
-    await fastify.listen({ port, host: '0.0.0.0' });
+    await fastify.listen({ port, host: "0.0.0.0" });
     console.log(`🚀 Server is running on http://localhost:${port}`);
   } catch (err) {
     fastify.log.error(err);
