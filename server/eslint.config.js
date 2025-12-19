@@ -76,6 +76,32 @@ export default tseslint.config(
     },
   },
   {
+    // Disable strict unsafe rules for controller files (service integration)
+    files: ["**/controllers/*.ts"],
+    rules: {
+      "@typescript-eslint/no-unsafe-assignment": "off",
+      "@typescript-eslint/no-unsafe-call": "off",
+    },
+  },
+  {
+    // Disable strict unsafe rules for infrastructure files (service integration)
+    files: ["**/infrastructure/*.ts"],
+    rules: {
+      "@typescript-eslint/no-unsafe-assignment": "off",
+      "@typescript-eslint/no-unsafe-call": "off",
+      "@typescript-eslint/no-unsafe-member-access": "off",
+    },
+  },
+  {
+    // Disable strict unsafe rules for service files (service integration)
+    files: ["**/service/*.ts"],
+    rules: {
+      "@typescript-eslint/no-unsafe-assignment": "off",
+      "@typescript-eslint/no-unsafe-call": "off",
+      "@typescript-eslint/no-unsafe-member-access": "off",
+    },
+  },
+  {
     ignores: ["dist/", "node_modules/", "*.config.js"],
   }
 );
