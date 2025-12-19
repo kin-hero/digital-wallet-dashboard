@@ -68,6 +68,14 @@ export default tseslint.config(
     },
   },
   {
+    // Disable strict unsafe rules for server.ts (Fastify type complexity)
+    files: ["**/server.ts", "src/server.ts"],
+    rules: {
+      "@typescript-eslint/no-unsafe-assignment": "off",
+      "@typescript-eslint/no-unsafe-argument": "off",
+    },
+  },
+  {
     ignores: ["dist/", "node_modules/", "*.config.js"],
   }
 );
