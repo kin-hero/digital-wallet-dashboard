@@ -7,7 +7,7 @@
     "client"
   ],
   "scripts": {
-    "prepare": "husky"
+    "prepare": "[ \"$HUSKY\" = \"0\" ] || husky"
   },
   "devDependencies": {
     "husky": "^9.1.7"
