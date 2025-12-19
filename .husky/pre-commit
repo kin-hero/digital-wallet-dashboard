@@ -1,0 +1,4 @@
+# Run server pre-commit checks if server files are staged
+if git diff --cached --name-only | grep -q '^server/'; then
+  .husky/server-pre-commit
+fi
