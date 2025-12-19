@@ -3,6 +3,7 @@ import type { CheckWalletAgeResponse } from "../schemas/wallet.schema";
 import { getTheMostRecentTransactionOfAddress } from "../infrastructure/wallet";
 import { EtherscanApiError, ServiceUnavailableError } from "../errors";
 import { ZodError } from "zod";
+import { config } from "../config";
 
 const verifyWalletAge = async (address: EthereumAddress): Promise<CheckWalletAgeResponse> => {
   try {
@@ -27,14 +28,10 @@ const verifyWalletAge = async (address: EthereumAddress): Promise<CheckWalletAge
     const differenceInMilliseconds = currentDate.getTime() - transactionDate.getTime();
     const differenceInDays = Math.floor(differenceInMilliseconds / (1000 * 60 * 60 * 24));
 
-    // Get threshold from environment variable (default to 1 year = 365 days)
-    const validWalletYears = Number(process.env.VALID_WALLET_YEAR) || 1;
-    const thresholdInDays = validWalletYears * 365;
-
     // Determine if wallet is old (older than threshold)
+    const thresholdInDays = config.validWalletYears * 365;
     const isOld = differenceInDays > thresholdInDays;
 
-    // Format date as YYYY-MM-DD
     const lastTransactionDate = transactionDate.toISOString().substring(0, 10);
 
     return {

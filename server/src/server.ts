@@ -2,6 +2,7 @@ import Fastify, { type FastifyError } from "fastify";
 import { serializerCompiler, validatorCompiler, type ZodTypeProvider } from "fastify-type-provider-zod";
 import cors from "@fastify/cors";
 import walletRoutes from "./routes/wallet";
+import { config } from "./config";
 
 const fastify = Fastify({
   logger: true,
@@ -43,9 +44,8 @@ fastify.setErrorHandler((error: FastifyError, _request, reply) => {
 // Start server
 const start = async () => {
   try {
-    const port = Number(process.env.PORT) || 3001;
-    await fastify.listen({ port, host: "0.0.0.0" });
-    console.log(`🚀 Server is running on http://localhost:${port}`);
+    await fastify.listen({ port: config.port, host: "0.0.0.0" });
+    console.log(`🚀 Server is running on http://localhost:${config.port}`);
   } catch (err) {
     fastify.log.error(err);
     process.exit(1);
