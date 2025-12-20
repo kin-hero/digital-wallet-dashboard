@@ -30,42 +30,40 @@ export function WalletChecker({ refreshKey }: WalletCheckerProps) {
     return /^0x[a-fA-F0-9]{40}$/.test(addr);
   };
 
-  const fetchWalletData = useCallback(async (isAutoRefresh = false) => {
-    if (!address.trim() || !validateEthereumAddress(address)) {
-      return;
-    }
-
-    setIsLoading(true);
-    setAgeResult(null);
-    setBalanceResult(null);
-
-    try {
-      // Fetch sequentially to avoid Etherscan API rate limit (3 calls/sec)
-      const ageResponse = await checkWalletAge(address);
-
-      // Small delay between requests to respect rate limits
-      await new Promise(resolve => setTimeout(resolve, 350));
-
-      const balanceResponse = await checkWalletBalance(address, currency);
-
-      if (ageResponse.statusCode === 200 && balanceResponse.statusCode === 200) {
-        setAgeResult(ageResponse.result);
-        setBalanceResult(balanceResponse.result);
-        toast.success(isAutoRefresh ? "Wallet balance updated with new exchange rates!" : "Wallet information fetched successfully!");
-      } else {
-        if (ageResponse.statusCode !== 200) {
-          toast.error(ageResponse.message || "Failed to check wallet age");
-        }
-        if (balanceResponse.statusCode !== 200) {
-          toast.error(balanceResponse.message || "Failed to fetch wallet balance");
-        }
+  const fetchWalletData = useCallback(
+    async (isAutoRefresh = false) => {
+      if (!address.trim() || !validateEthereumAddress(address)) {
+        return;
       }
-    } catch {
-      toast.error("An error occurred while fetching wallet information");
-    } finally {
-      setIsLoading(false);
-    }
-  }, [address, currency]);
+
+      setIsLoading(true);
+      setAgeResult(null);
+      setBalanceResult(null);
+
+      try {
+        const ageResponse = await checkWalletAge(address);
+        const balanceResponse = await checkWalletBalance(address, currency);
+
+        if (ageResponse.statusCode === 200 && balanceResponse.statusCode === 200) {
+          setAgeResult(ageResponse.result);
+          setBalanceResult(balanceResponse.result);
+          toast.success(isAutoRefresh ? "Wallet balance updated with new exchange rates!" : "Wallet information fetched successfully!");
+        } else {
+          if (ageResponse.statusCode !== 200) {
+            toast.error(ageResponse.message || "Failed to check wallet age");
+          }
+          if (balanceResponse.statusCode !== 200) {
+            toast.error(balanceResponse.message || "Failed to fetch wallet balance");
+          }
+        }
+      } catch {
+        toast.error("An error occurred while fetching wallet information");
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [address, currency]
+  );
 
   // Auto re-fetch when exchange rates update
   useEffect(() => {
