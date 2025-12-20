@@ -1,6 +1,6 @@
 import type { FastifyRequest, FastifyReply } from "fastify";
 import type { EthereumAddressParams, CheckWalletAgeResponse, CurrencyQueryString, WalletBalanceWithCurrencyResponse } from "../schemas/wallet.schema";
-import { checkWalletAge as checkWalletAgeFromService, getWalletBalanceWithCurrency as getWalletBalanceWithCurrencyFromService } from "../service/wallet";
+import { checkWalletAge as checkWalletAgeFromService, getWalletBalanceWithCurrency as getWalletBalanceWithCurrencyFromService } from "../services/wallet";
 import { EtherscanApiError, ServiceUnavailableError } from "../errors";
 
 export const checkWalletAge = async (request: FastifyRequest<{ Params: EthereumAddressParams }>, reply: FastifyReply) => {
