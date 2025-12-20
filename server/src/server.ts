@@ -14,7 +14,9 @@ fastify.setValidatorCompiler(validatorCompiler);
 fastify.setSerializerCompiler(serializerCompiler);
 
 // Register plugins
-fastify.register(cors);
+fastify.register(cors, {
+  origin: config.frontEndUrl,
+});
 
 // Register routes
 fastify.register(walletRoutes, { prefix: "/api/wallet" });
