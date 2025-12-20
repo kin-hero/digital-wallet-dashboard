@@ -13,7 +13,7 @@ export const exchangeRateSchema = {
     200: exchangeRateResponseSchema,
     500: errorResponseSchema,
   },
-};
+} as const;
 
 export type ExchangeRateResponse = z.infer<typeof exchangeRateResponseSchema>;
 
@@ -30,4 +30,4 @@ export const updateExchangeRateSchema = {
     200: exchangeRateResponseSchema,
     500: errorResponseSchema,
   },
-};
+} as const;
