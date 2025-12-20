@@ -11,4 +11,9 @@ export type ExchangeRatesResponse = SuccessResponse<{
   USD: number;
 }>;
 
+export type WalletAgeResponse = SuccessResponse<{
+  isOld: boolean;
+  lastTransactionDate: string;
+}>;
+
 export type Currency = "EUR" | "USD";
