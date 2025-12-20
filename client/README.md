@@ -58,11 +58,11 @@ client/
 │   ├── layout.tsx         # Root layout
 │   ├── page.tsx           # Main dashboard page
 │   └── globals.css        # Global styles
-├── components/            # React components (to be added)
-├── lib/                   # Utilities and API client (to be added)
-├── types/                 # TypeScript type definitions (to be added)
-├── hooks/                 # Custom React hooks (to be added)
+├── components/            # React components 
+├── lib/                   # Utilities and API client 
+├── types/                 # TypeScript type definitions 
 ├── public/                # Static assets
+├── .env.production             # Environment variables (production)
 ├── .env.local             # Environment variables (local)
 ├── .env.example           # Environment variables template
 ├── tsconfig.json          # TypeScript configuration
@@ -77,7 +77,6 @@ The frontend follows a clean architecture pattern similar to the backend:
 - **`app/`** - Next.js routing and page components
 - **`components/`** - Reusable React UI components
 - **`lib/`** - API client and utility functions (infrastructure layer)
-- **`hooks/`** - Custom React hooks for business logic (service layer)
 - **`types/`** - Shared TypeScript interfaces
 
 ## Planned Features
@@ -107,13 +106,3 @@ The frontend will communicate with the backend API at `http://localhost:3001`:
 - `PATCH /api/exchange-rate` - Update exchange rate
 - `GET /api/wallet/:address/is-old` - Check wallet age
 - `GET /api/wallet/:address/balance?currency=USD|EUR` - Get wallet balance
-
-## Development Notes
-
-- This branch contains only the Next.js setup
-- No API integration or UI components implemented yet
-- Future branches will add:
-  - API client in `lib/`
-  - Custom hooks in `hooks/`
-  - UI components in `components/`
-  - TypeScript types in `types/`
