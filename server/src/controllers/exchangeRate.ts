@@ -1,6 +1,6 @@
 import type { FastifyRequest, FastifyReply } from "fastify";
 import type { ExchangeRateBody } from "../schemas/exchangeRate.schema";
-import { getEthereumExchangeRate as getEthereumExchangeRateFromService, updateEthereumExchangeRate as updateEthereumExchangeRateFromService } from "../service/exchangeRate";
+import { getEthereumExchangeRate as getEthereumExchangeRateFromService, updateEthereumExchangeRate as updateEthereumExchangeRateFromService } from "../services/exchangeRate";
 
 // In production, this should be async when fetching from a real API or database
 export const getEthereumExchangeRate = (_request: FastifyRequest, reply: FastifyReply) => {

@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
-import { checkWalletAge } from "../service/wallet";
+import { checkWalletAge } from "../services/wallet";
 import * as walletInfra from "../infrastructure/wallet";
 import type { EtherscanTxResponse } from "../schemas/etherscan.schema";
 
