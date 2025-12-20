@@ -72,7 +72,7 @@ npm run dev  # Runs on http://localhost:3000
 - ✅ Check if wallet is old (>1 year inactive)
 - ✅ Get/update ETH exchange rates (EUR, USD)
 - ✅ Get wallet balance in different currencies
-- 🎨 Dashboard UI (in progress)
+- ✅ Dashboard UI
 
 ## Architecture
 
