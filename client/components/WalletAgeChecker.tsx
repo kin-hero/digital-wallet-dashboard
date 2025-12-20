@@ -72,9 +72,7 @@ export function WalletAgeChecker() {
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent font-mono text-sm"
             disabled={isLoading}
           />
-          <p className="mt-1 text-xs text-gray-500">
-            Enter a valid Ethereum address (0x followed by 40 hex characters)
-          </p>
+          <p className="mt-1 text-xs text-gray-500">Enter a valid Ethereum address (0x followed by 40 hex characters)</p>
         </div>
 
         {/* Action Buttons */}
@@ -103,27 +101,15 @@ export function WalletAgeChecker() {
       {result && (
         <div className="mt-6 p-4 rounded-lg border-2 border-gray-200 bg-gray-50">
           <div className="flex items-start space-x-3">
-            <div className="text-3xl">
-              {result.isOld ? "🕰️" : "🆕"}
-            </div>
+            <div className="text-3xl">{result.isOld ? "🕰️" : "🆕"}</div>
             <div className="flex-1">
-              <h4 className="font-semibold text-lg text-gray-900 mb-2">
-                {result.isOld ? "Old Wallet" : "Recent Wallet"}
-              </h4>
+              <h4 className="font-semibold text-lg text-gray-900 mb-2">{result.isOld ? "Old Wallet" : "Recent Wallet"}</h4>
               <div className="space-y-1 text-sm text-gray-700">
                 <p>
-                  <span className="font-medium">Status:</span>{" "}
-                  {result.isOld
-                    ? "Last transaction was more than 1 year ago"
-                    : "Active within the last year"}
+                  <span className="font-medium">Status:</span> {result.isOld ? "Last transaction was more than 1 year ago" : "Active within the last year"}
                 </p>
                 <p>
-                  <span className="font-medium">Last Transaction:</span>{" "}
-                  {new Date(result.lastTransactionDate).toLocaleDateString("en-US", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })}
+                  <span className="font-medium">Last Transaction:</span> {result.lastTransactionDate}
                 </p>
               </div>
             </div>
