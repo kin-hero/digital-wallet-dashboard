@@ -16,3 +16,8 @@ export const successResponseSchema = z.object({
   statusCode: z.number(),
   message: z.string(),
 });
+
+export const currencySchema = z.enum(["EUR", "USD"]);
+export type Currency = z.infer<typeof currencySchema>;
+
+export type ExchangeRates = { USD: number; EUR: number };
