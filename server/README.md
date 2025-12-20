@@ -143,11 +143,15 @@ server/
 ### Available Scripts
 
 ```bash
-npm run dev        # Start development server with hot reload
-npm run build      # Compile TypeScript to JavaScript
-npm start          # Run production server
-npm run lint       # Run ESLint
-npm run typecheck  # Run TypeScript type checking
+npm run dev            # Start development server with hot reload
+npm run build          # Compile TypeScript to JavaScript
+npm start              # Run production server
+npm run lint           # Run ESLint
+npm run typecheck      # Run TypeScript type checking
+npm test               # Run tests once
+npm run test:watch     # Run tests in watch mode
+npm run test:ui        # Run tests with UI
+npm run test:coverage  # Run tests with coverage report
 ```
 
 ## Example Usage
@@ -196,6 +200,47 @@ All error responses follow this format:
   "message": "Error description"
 }
 ```
+
+## Testing
+
+The project includes comprehensive unit tests using **Vitest** covering:
+
+### Test Coverage
+
+**Service Layer Tests** (`wallet.service.test.ts`):
+- Wallet age calculation with mocked Etherscan responses
+- Edge cases: no transactions, boundary conditions (364/365 days)
+- Time-based logic using deterministic fake timers
+- Response structure validation
+
+**Schema Validation Tests** (`wallet.schema.test.ts`):
+- Ethereum address format validation (0x prefix, 40 hex chars)
+- Currency enum validation (USD, EUR only)
+- Invalid input rejection (wrong format, missing fields, null/undefined)
+- Both individual schemas and object schemas
+
+### Running Tests
+
+```bash
+# Run all tests
+npm test
+
+# Watch mode (re-run on file changes)
+npm run test:watch
+
+# Interactive UI
+npm run test:ui
+
+# With coverage report
+npm run test:coverage
+```
+
+### Test Results
+- **30 tests passing**
+- **2 test files**
+- Fast execution (~7ms test time)
+- Full TypeScript support
+- Mocked external dependencies (Etherscan API)
 
 ## Production Considerations
 
