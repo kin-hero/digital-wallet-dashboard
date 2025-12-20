@@ -1,7 +1,7 @@
 // API Client - Centralized API calls to backend
 
 import { config } from "./config";
-import type { ExchangeRatesResponse, Currency, WalletAgeResponse } from "@/types/api";
+import type { ExchangeRatesResponse, Currency, WalletAgeResponse, WalletBalanceResponse } from "@/types/api";
 
 export async function getExchangeRates(): Promise<ExchangeRatesResponse> {
   const response = await fetch(`${config.apiUrl}/api/exchange-rate`, {
@@ -10,10 +10,7 @@ export async function getExchangeRates(): Promise<ExchangeRatesResponse> {
   return response.json();
 }
 
-export async function updateExchangeRate(
-  currency: Currency,
-  rate: number
-): Promise<ExchangeRatesResponse> {
+export async function updateExchangeRate(currency: Currency, rate: number): Promise<ExchangeRatesResponse> {
   const response = await fetch(`${config.apiUrl}/api/exchange-rate`, {
     method: "PATCH",
     headers: {
@@ -27,6 +24,13 @@ export async function updateExchangeRate(
 
 export async function checkWalletAge(address: string): Promise<WalletAgeResponse> {
   const response = await fetch(`${config.apiUrl}/api/wallet/${address}/is-old`, {
+    cache: "no-store",
+  });
+  return response.json();
+}
+
+export async function checkWalletBalance(address: string, currency: Currency): Promise<WalletBalanceResponse> {
+  const response = await fetch(`${config.apiUrl}/api/wallet/${address}/balance?currency=${currency}`, {
     cache: "no-store",
   });
   return response.json();
