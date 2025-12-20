@@ -105,12 +105,8 @@ export function WalletAgeChecker() {
             <div className="flex-1">
               <h4 className="font-semibold text-lg text-gray-900 mb-2">{result.isOld ? "Old Wallet" : "Recent Wallet"}</h4>
               <div className="space-y-1 text-sm text-gray-700">
-                <p>
-                  <span className="font-medium">Status:</span> {result.isOld ? "Last transaction was more than 1 year ago" : "Active within the last year"}
-                </p>
-                <p>
-                  <span className="font-medium">Last Transaction:</span> {result.lastTransactionDate}
-                </p>
+                <p className="font-medium">Status: {result.isOld ? "Last transaction was more than 1 year ago" : "Active within the last year"}</p>
+                <p className="font-medium">Last Transaction: {result.lastTransactionDate}</p>
               </div>
             </div>
           </div>
