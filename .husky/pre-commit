@@ -2,3 +2,8 @@
 if git diff --cached --name-only | grep -q '^server/'; then
   .husky/server-pre-commit
 fi
+
+# Run client pre-commit checks if client files are staged
+if git diff --cached --name-only | grep -q '^client/'; then
+  .husky/client-pre-commit
+fi
