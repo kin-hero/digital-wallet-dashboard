@@ -3,6 +3,7 @@ import { serializerCompiler, validatorCompiler, type ZodTypeProvider } from "fas
 import cors from "@fastify/cors";
 import walletRoutes from "./routes/wallet";
 import { config } from "./config";
+import exchangeRateRoutes from "./routes/exchangeRate";
 
 const fastify = Fastify({
   logger: true,
@@ -17,6 +18,7 @@ fastify.register(cors);
 
 // Register routes
 fastify.register(walletRoutes, { prefix: "/api/wallet" });
+fastify.register(exchangeRateRoutes, { prefix: "/api/exchange-rate" });
 
 // Health check route
 fastify.get("/health", () => {
