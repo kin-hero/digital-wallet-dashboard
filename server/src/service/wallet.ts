@@ -1,9 +1,11 @@
-import type { EthereumAddress } from "../schemas/common.schema";
-import type { CheckWalletAgeResponse } from "../schemas/wallet.schema";
-import getTheMostRecentTransactionOfAddress from "../infrastructure/wallet";
+import type { Currency, EthereumAddress } from "../schemas/common.schema";
+import type { CheckWalletAgeResponse, WalletBalanceWithCurrencyResponse } from "../schemas/wallet.schema";
+import { getCurrentEthereumBalanceOfAddress, getTheMostRecentTransactionOfAddress } from "../infrastructure/wallet";
 import { EtherscanApiError, ServiceUnavailableError } from "../errors";
 import { ZodError } from "zod";
 import { config } from "../config";
+import { formatUnits } from "ethers";
+import { getEthereumExchangeRate } from "./exchangeRate";
 
 export const checkWalletAge = async (address: EthereumAddress): Promise<CheckWalletAgeResponse> => {
   try {
@@ -48,6 +50,41 @@ export const checkWalletAge = async (address: EthereumAddress): Promise<CheckWal
       throw new EtherscanApiError("Etherscan API returned invalid response format");
     }
 
+    // Handle network errors (fetch failures, timeouts, DNS issues)
+    if (error instanceof TypeError && error.message.includes("fetch")) {
+      throw new ServiceUnavailableError("Unable to connect to Etherscan API");
+    }
+
+    throw error;
+  }
+};
+
+export const getWalletBalanceWithCurrency = async (address: EthereumAddress, currency: Currency): Promise<WalletBalanceWithCurrencyResponse> => {
+  try {
+    // Get Ethereum
+    const { result: wei } = await getCurrentEthereumBalanceOfAddress(address);
+    const ethBalance = formatUnits(wei, 18);
+
+    // Get rate
+    const { result } = getEthereumExchangeRate();
+    const rate = result[currency];
+
+    const convertedAmount = parseFloat(ethBalance) * rate;
+    return {
+      statusCode: 200,
+      message: `Successfully retrieved ETH as ${currency}`,
+      result: {
+        address,
+        ethBalance,
+        convertedAmount,
+        currency,
+      },
+    };
+  } catch (error) {
+    // Handle Zod validation errors (invalid response format from Etherscan)
+    if (error instanceof ZodError) {
+      throw new EtherscanApiError("Etherscan API returned invalid response format");
+    }
     // Handle network errors (fetch failures, timeouts, DNS issues)
     if (error instanceof TypeError && error.message.includes("fetch")) {
       throw new ServiceUnavailableError("Unable to connect to Etherscan API");
