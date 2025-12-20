@@ -1,6 +1,7 @@
 # Digital Wallet Dashboard
 
 A full-stack TypeScript application that provides analytics on Ethereum wallets using the Etherscan API.
+<img width="2696" height="1642" alt="image" src="https://github.com/user-attachments/assets/89fe525d-98f5-4ddf-8ad9-95899b244036" />
 
 ## Overview
 
