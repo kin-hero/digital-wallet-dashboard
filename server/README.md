@@ -236,7 +236,7 @@ npm run test:coverage
 ```
 
 ### Test Results
-- **30 tests passing**
+- **29 tests passing**
 - **2 test files**
 - Fast execution (~7ms test time)
 - Full TypeScript support
