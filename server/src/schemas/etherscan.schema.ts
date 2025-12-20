@@ -30,3 +30,11 @@ export const EtherscanTxResponseSchema = z.object({
 });
 
 export type EtherscanTxResponse = z.infer<typeof EtherscanTxResponseSchema>;
+
+export const EtherscanBalanceResponseSchema = z.object({
+  status: z.enum(["0", "1"]),
+  message: z.string(),
+  result: z.string(),
+});
+
+export type EtherscanBalanceResponse = z.infer<typeof EtherscanBalanceResponseSchema>;
