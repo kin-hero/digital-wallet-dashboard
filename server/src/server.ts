@@ -13,6 +13,11 @@ const fastify = Fastify({
 fastify.setValidatorCompiler(validatorCompiler);
 fastify.setSerializerCompiler(serializerCompiler);
 
+// Health check route (before CORS to allow health checks from anywhere)
+fastify.get("/health", () => {
+  return { status: "ok", message: "Server is running" };
+});
+
 // Register plugins
 fastify.register(cors, {
   origin: config.frontEndUrl,
@@ -21,11 +26,6 @@ fastify.register(cors, {
 // Register routes
 fastify.register(walletRoutes, { prefix: "/api/wallet" });
 fastify.register(exchangeRateRoutes, { prefix: "/api/exchange-rate" });
-
-// Health check route
-fastify.get("/health", () => {
-  return { status: "ok", message: "Server is running" };
-});
 
 // Global error handler
 fastify.setErrorHandler((error: FastifyError, _request, reply) => {
