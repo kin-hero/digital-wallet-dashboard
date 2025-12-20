@@ -16,4 +16,11 @@ export type WalletAgeResponse = SuccessResponse<{
   lastTransactionDate: string;
 }>;
 
+export type WalletBalanceResponse = SuccessResponse<{
+  address: string;
+  ethBalance: string;
+  convertedAmount: number;
+  currency: Currency;
+}>;
+
 export type Currency = "EUR" | "USD";
