@@ -1,11 +1,11 @@
 import type { EthereumAddress } from "../schemas/common.schema";
 import type { CheckWalletAgeResponse } from "../schemas/wallet.schema";
-import { getTheMostRecentTransactionOfAddress } from "../infrastructure/wallet";
+import getTheMostRecentTransactionOfAddress from "../infrastructure/wallet";
 import { EtherscanApiError, ServiceUnavailableError } from "../errors";
 import { ZodError } from "zod";
 import { config } from "../config";
 
-const verifyWalletAge = async (address: EthereumAddress): Promise<CheckWalletAgeResponse> => {
+export const checkWalletAge = async (address: EthereumAddress): Promise<CheckWalletAgeResponse> => {
   try {
     const { result } = await getTheMostRecentTransactionOfAddress(address);
     const mostRecentTransaction = result[0];
@@ -56,5 +56,3 @@ const verifyWalletAge = async (address: EthereumAddress): Promise<CheckWalletAge
     throw error;
   }
 };
-
-export default verifyWalletAge;

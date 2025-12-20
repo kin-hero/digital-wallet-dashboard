@@ -16,7 +16,7 @@ fastify.setSerializerCompiler(serializerCompiler);
 fastify.register(cors);
 
 // Register routes
-fastify.register(walletRoutes, { prefix: "/api" });
+fastify.register(walletRoutes, { prefix: "/api/wallet" });
 
 // Health check route
 fastify.get("/health", () => {
