@@ -16,30 +16,30 @@ export function WalletBalanceResult({
   return (
     <div className="p-4 rounded-lg border-2 border-gray-200 bg-gray-50">
       <div className="flex items-start space-x-3">
-        <div className="text-3xl">💰</div>
-        <div className="flex-1">
+        <div className="text-3xl flex-shrink-0">💰</div>
+        <div className="flex-1 min-w-0">
           <h4 className="font-semibold text-lg text-gray-900 mb-2">Wallet Balance</h4>
-          <div className="space-y-2 text-sm text-gray-700">
-            <p>
-              <span className="font-medium">Address:</span>{" "}
-              <span className="font-mono text-xs">{address}</span>
-            </p>
-            <p>
-              <span className="font-medium">ETH Balance:</span>{" "}
-              <span className="text-lg font-bold text-gray-900">
+          <div className="space-y-3 text-sm text-gray-700">
+            <div>
+              <p className="font-medium mb-1">Address:</p>
+              <p className="font-mono text-xs break-all">{address}</p>
+            </div>
+            <div>
+              <p className="font-medium mb-1">ETH Balance:</p>
+              <p className="text-base sm:text-lg font-bold text-gray-900 break-all">
                 {ethBalance} ETH
-              </span>
-            </p>
-            <p>
-              <span className="font-medium">Converted Amount:</span>{" "}
-              <span className="text-lg font-bold text-green-600">
+              </p>
+            </div>
+            <div>
+              <p className="font-medium mb-1">Converted Amount:</p>
+              <p className="text-base sm:text-lg font-bold text-green-600">
                 {currency === "USD" ? "$" : "€"}
                 {convertedAmount.toLocaleString("en-US", {
                   minimumFractionDigits: 2,
                   maximumFractionDigits: 2,
                 })}
-              </span>
-            </p>
+              </p>
+            </div>
           </div>
         </div>
       </div>
