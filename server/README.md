@@ -2,6 +2,12 @@
 
 A TypeScript-based REST API built with Fastify that provides Ethereum wallet analytics and currency conversion services using the Etherscan API.
 
+## 🚀 Live API
+
+**Base URL:** [https://digital-wallet.keanesetiawan.com](https://digital-wallet.keanesetiawan.com)
+
+Try the health check: [https://digital-wallet.keanesetiawan.com/health](https://digital-wallet.keanesetiawan.com/health)
+
 ## API Documentation
 
 Complete API documentation with interactive examples available at:
