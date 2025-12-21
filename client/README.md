@@ -2,6 +2,10 @@
 
 This is the frontend application for the Digital Wallet Dashboard, built with Next.js 16, React 19, and TypeScript.
 
+## 🚀 Live Demo
+
+**Application URL:** [https://wallet-dashboard.keanesetiawan.com](https://wallet-dashboard.keanesetiawan.com)
+
 ## Tech Stack
 
 - **Framework:** Next.js 16 (App Router)
