@@ -97,7 +97,7 @@ export function WalletChecker({ refreshKey }: WalletCheckerProps) {
 
   return (
     <div className="bg-white rounded-lg shadow-lg p-6">
-      <h3 className="text-xl font-bold text-gray-800 mb-4">Check Wallet Information</h3>
+      <h1 className="text-2xl font-bold text-gray-800 mb-4">Check Wallet Information</h1>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Currency Selection */}
