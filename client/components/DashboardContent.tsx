@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { ExchangeRateUpdateForm } from "./ExchangeRateUpdateForm";
-import { WalletChecker } from "./WalletChecker";
+import { ExchangeRateUpdateForm } from "./exchangeRate/ExchangeRateUpdateForm";
+import { WalletChecker } from "./wallet/WalletChecker";
 
 interface DashboardContentProps {
   children: React.ReactNode;
