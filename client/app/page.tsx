@@ -2,8 +2,8 @@ import { Suspense } from "react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { DashboardContent } from "@/components/DashboardContent";
-import { ExchangeRateDisplay } from "@/components/ExchangeRateDisplay";
-import { ExchangeRateLoading } from "@/components/ExchangeRateLoading";
+import { ExchangeRateDisplay } from "@/components/exchangeRate/ExchangeRateDisplay";
+import { ExchangeRateLoading } from "@/components/exchangeRate/ExchangeRateLoading";
 
 export default function Home() {
   return (
