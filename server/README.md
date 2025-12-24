@@ -213,17 +213,36 @@ The project includes comprehensive unit tests using **Vitest** covering:
 
 ### Test Coverage
 
-**Service Layer Tests** (`wallet.service.test.ts`):
+**Wallet Service Layer Tests** (`wallet.service.test.ts`):
 - Wallet age calculation with mocked Etherscan responses
 - Edge cases: no transactions, boundary conditions (364/365 days)
 - Time-based logic using deterministic fake timers
+- Balance conversion with exchange rates
+- Error handling for Etherscan API failures
 - Response structure validation
 
-**Schema Validation Tests** (`wallet.schema.test.ts`):
+**Wallet Schema Validation Tests** (`wallet.schema.test.ts`):
 - Ethereum address format validation (0x prefix, 40 hex chars)
 - Currency enum validation (USD, EUR only)
 - Invalid input rejection (wrong format, missing fields, null/undefined)
+- Query string and params validation
 - Both individual schemas and object schemas
+
+**Exchange Rate Service Layer Tests** (`exchangeRate.service.test.ts`):
+- Getting current exchange rates with proper response structure
+- Updating USD and EUR exchange rates
+- Handling decimal and large rate values
+- Service-to-infrastructure layer interaction
+- Response message formatting with currency and rate
+- Mocked infrastructure layer
+
+**Exchange Rate Schema Validation Tests** (`exchangeRate.schema.test.ts`):
+- Currency schema validation (USD, EUR acceptance)
+- Rejection of invalid currencies (lowercase, GBP, JPY, etc.)
+- Exchange rate body schema validation
+- Decimal rate values (e.g., 3000.50)
+- Edge cases: negative rates, zero rates, missing fields
+- Type validation (rejecting string rates, null, undefined)
 
 ### Running Tests
 
@@ -242,11 +261,11 @@ npm run test:coverage
 ```
 
 ### Test Results
-- **29 tests passing**
-- **2 test files**
+- **63 tests passing**
+- **4 test files**
 - Fast execution (~7ms test time)
 - Full TypeScript support
-- Mocked external dependencies (Etherscan API)
+- Mocked external dependencies (Etherscan API, infrastructure layer)
 
 ## Production Considerations
 
