@@ -1,4 +1,4 @@
-# Digital Wallet Dashboard
+# Digital Wallet Dashboard By Keane
 
 A full-stack TypeScript application that provides analytics on Ethereum wallets using the Etherscan API.
 
